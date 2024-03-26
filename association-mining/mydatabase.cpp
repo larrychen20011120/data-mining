@@ -89,11 +89,9 @@ int Database::search_by_pattern(const set<int> pattern)
  *********************************************/
 void Database::delete_from_patterns(const std::set<std::set<int>> patterns) {
 
-    for (auto& transaction: transactions) { // 刪除一階的對應db
-        for (auto pattern: patterns) {
-            transactions.erase(pattern);
-        }        
-    }
+    for (auto pattern: patterns) {
+        transactions.erase(pattern);
+    }        
 
     for (auto pattern: patterns) { // 更新一階的itemset
         itemset.erase(pattern);
