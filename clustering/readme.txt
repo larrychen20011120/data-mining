@@ -1,6 +1,8 @@
 實作演算法 dbscan
+    * 資料會根據x, y兩軸分別標準化，所以radius取值為小數
     * 先做分群並辨識出 NOISE
     * 根據現有的群算出群中心後，幫NOISE分到這些群裡(依照與群中心的距離)
+    * 參數影響非常大
 
 編譯可執行檔
     g++ -o main main.cpp dbscan.cpp

@@ -105,10 +105,11 @@ vector< pair<float, float> > DBScan::region_query(
 void DBScan::adjust_noises() {
 
     // 計算cluster中心點
-    cluster_centers.push_back(make_pair(0.0f, 0.0f)); // 不用到第一個位置
+    cluster_centers.push_back(make_pair(0.0f, 0.0f)); // 忽略第一個位置(index從1開始)
     float mean_x[n_clusters+1], mean_y[n_clusters+1];
     int count_x[n_clusters+1], count_y[n_clusters+1];
 
+    // 計算總和與數量
     for (int i = 1; i <= n_clusters; i++) {
         mean_x[i] = mean_y[i] = 0.0f;
         count_x[i] = count_y[i] = 0;
@@ -122,6 +123,7 @@ void DBScan::adjust_noises() {
         count_y[cluster]++;
     }
 
+    // 計算各群中心點：(mean_x, mean_y)
     for (int i = 1; i <= n_clusters; ++i) {
         cluster_centers.push_back(
             make_pair(
